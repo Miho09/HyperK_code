@@ -102,7 +102,7 @@ void carte_polar(char *filename=NULL) {
       int ncherenkovdigihits = wcsimrootevent->GetNcherenkovdigihits();
         for (int i = 0; i < ncherenkovdigihits; i++){
 
-          WCSimRootTrack * track = (WCSimRootTrack*) wcsimrootevent->GetTracks()->At(0);
+          WCSimRootTrack * track = (WCSimRootTrack*) wcsimrootevent->GetTracks()->At(2);
 
           vtxX = wcsimrootevent->GetVtx(0);
           vtxY = wcsimrootevent->GetVtx(1);
