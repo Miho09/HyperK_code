@@ -105,12 +105,21 @@ void reset_test_PMT(char *filename=NULL) {
           WCSimRootCherenkovDigiHit *cDigiHit = wcsimrootevent->GetCherenkovDigiHits()->At(i);
 
           double PhotoElectrons = cDigiHit->GetQ();
-          int tubeId = hit->GetTubeId();
+
+	  int tubeID = hit->GetTubeId() -1;
+	  double tube[3];
+	  int cylLoc = geo->GetPMT(tubeID).GetCylLoc();
+	  tube[0] = geo->GetPMT(tubeID).GetPosition(0);
+	  tube[1] = geo->GetPMT(tubeID).GetPosition(1);
+	  tube[2] = geo->GetPMT(tubeID).GetPosition(2);
+
           double timing = hit->GetT();
-          WCSimRootPMT pmt = wcsimrootgeom->GetPMT(tubeId);
+          // WCSimRootPMT pmt = wcsimrootgeom->GetPMT(tubeId);
           // cout << "me " << endl;
           // cout << "pmt ID: " << tubeId << endl;
-          double pmtZ = pmt.GetPosition(2);
+
+          double pmtZ=tube[2];
+
           double real_z = pmtZ + 2750.;
           double index = real_z / 5500.;
           double new_index = index * 110.;
